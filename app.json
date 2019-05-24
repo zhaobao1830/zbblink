@@ -5,8 +5,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "头部",
+    "navigationBarTitleText": "头部测试",
     "navigationBarTextStyle": "white"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
