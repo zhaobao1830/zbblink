@@ -1,21 +1,2 @@
 /* pages/classic/classic.wxss */
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-flow: wrap;
-}
-.chunck{
-    width: 150px;
-    height: 100px;
-}
-.t1{
-    background-color: aqua;
-}
-.t2{
-    background-color: aquamarine;
-}
-.t3{
-    background-color: chartreuse;
-}
+

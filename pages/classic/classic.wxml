@@ -1,6 +1,4 @@
 <!--pages/classic/classic.wxml-->
 <view class="container">
-    <view class="chunck t1">t1</view>
-    <view class="chunck t2">t2</view>
-    <view class="chunck t3">t3</view>
+    <v-like></v-like>
 </view>

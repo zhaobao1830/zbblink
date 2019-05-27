@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/classic/classic"
+    "pages/classic/classic",
+    "components/like/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000000",
-    "navigationBarTitleText": "头部测试",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "1830",
+    "navigationBarTextStyle": "black"
   }
 }
