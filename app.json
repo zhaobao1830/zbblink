@@ -8,5 +8,6 @@
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "1830",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
