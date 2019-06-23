@@ -7,13 +7,16 @@
 }
 
 .container image{
-  width: 32rpx;
-  height: 28rpx;
+  width:32rpx;
+  height:28rpx;
+
 }
 
 .container text{
-  font-size: 24px;
-  line-height: 24px;
+  /* 苹方  思源 */
+  /* font-family: "PingFangSC-Thin"; */
+  font-size:24rpx;
+  line-height: 24rpx;
   color: #bbbbbb;
   position: relative;
   bottom: 10rpx;
