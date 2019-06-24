@@ -6,7 +6,12 @@ Component({
   properties: {
     index: {
       type: Number,
-      default: 1
+      observer (newVal, oldVal, changedPath) {
+        let val = newVal < 10 ? '0' + newVal : newVal
+        this.setData({
+          _index: val
+        })
+      }
     }
   },
 
@@ -14,12 +19,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    year: Number,
+    year: 11,
     date: String
   },
 
   attached () {
-    console.log(this.properties.index)
+    console.log(this.properties._index)
     console.log(this.data.year)
     console.log(this.data.date)
   },

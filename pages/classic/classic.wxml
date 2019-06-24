@@ -1,6 +1,6 @@
 <!--pages/classic/classic.wxml-->
 <view class="container">
-  <v-episode></v-episode>
+  <v-episode index="{{classic.index}}"></v-episode>
   <v-like bind:like="onLike" like="{{classic.like_status}}" count="{{classic.fav_nums}}"></v-like>
   <v-movie img="{{classic.image}}" content="{{classic.content}}"></v-movie>
 </view>
