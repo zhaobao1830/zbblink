@@ -1,6 +1,6 @@
 import { HTTP } from '../util/http'
 
-class ClassicModel extends HTTP{
+class ClassicModel extends HTTP {
   getLatest(sCallback) {
     this.request({
       url: 'classic/latest',
