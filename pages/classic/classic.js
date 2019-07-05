@@ -14,11 +14,19 @@ Page({
     classic: null
   },
 
-  onLike:function(event) {
-    console.log(event)
+  onLike: function (event) {
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
+
+  onNext: function (event) {
+
+  },
+
+  onPrevious: function (event) {
+
+  },
+
   /**输入
    * 生命周期函数--监听页面加载
    */
