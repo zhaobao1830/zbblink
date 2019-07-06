@@ -1,15 +1,14 @@
 // components/classic/music/index.js
+import { classicBeh } from '../classic-beh'
+
 Component({
+
+  behaviors: [classicBeh],
+
   /**
    * 组件的属性列表
    */
   properties: {
-    img: {
-      type: String
-    },
-    content: {
-      type: String
-    }
   },
 
   /**
