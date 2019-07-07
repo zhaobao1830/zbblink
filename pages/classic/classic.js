@@ -11,7 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    classic: null
+    classic: null,
+    latest: true,
+    first: false
   },
 
   onLike: function (event) {
@@ -20,11 +22,22 @@ Page({
   },
 
   onNext: function (event) {
-
+    this._updateClassic('next')
   },
 
   onPrevious: function (event) {
+    this._updateClassic('previous')
+  },
 
+  _updateClassic: function (nextOrPrevious) {
+    const index = this.data.classic.index
+    classicModel.getClassic(index, nextOrPrevious, (res) => {
+      this.setData({
+        classic: res,
+        latest: classicModel.isLatest(res.index),
+        first: classicModel.isFirst(res.index)
+      })
+    })
   },
 
   /**输入
