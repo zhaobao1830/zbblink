@@ -13,7 +13,9 @@ Page({
   data: {
     classic: null,
     latest: true,
-    first: false
+    first: false,
+    likeCount: 0,
+    likeStatus: false
   },
 
   onLike: function (event) {
@@ -32,6 +34,7 @@ Page({
   _updateClassic: function (nextOrPrevious) {
     const index = this.data.classic.index
     classicModel.getClassic(index, nextOrPrevious, (res) => {
+      this._getLikeStatus(res.id, res.type)
       this.setData({
         classic: res,
         latest: classicModel.isLatest(res.index),
@@ -40,15 +43,27 @@ Page({
     })
   },
 
+  _getLikeStatus: function(artID, category) {
+    likeModel.getClassicLikeStatus(artID, category,
+      (res) => {
+         this.setData({
+           likeCount: res.fav_nums,
+           likeStatus: res.like_status
+         })
+      }
+    )
+  },
+
   /**输入
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     // 数据更新
     classicModel.getLatest((res) => {
-      console.log(res)
       this.setData({
-        classic: res
+        classic: res,
+        likeCount: res.fav_nums,
+        likeStatus: res.like_status
       })
     })
   },
