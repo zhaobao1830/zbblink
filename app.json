@@ -9,5 +9,6 @@
     "navigationBarTitleText": "1830",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio"]
 }
