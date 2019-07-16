@@ -20,7 +20,7 @@ Component({
     pauseSrc: 'images/player@pause.png',
     playSrc: 'images/player@play.png'
   },
-
+  
   attached: function (event) {
     // 跳转页面 当前 切换
     this._recoverStatus()
