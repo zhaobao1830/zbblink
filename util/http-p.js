@@ -7,7 +7,7 @@ const tips = {
 }
 
 class HTTP {
-  request(url, data={}, method='GET') {
+  request({url, data={}, method='GET'}) {
     return new Promise(((resolve, reject) => {
       this._request(url, resolve, reject, data, method)
     }))
@@ -15,12 +15,12 @@ class HTTP {
 
   _request(url, resolve, reject, data={}, method='GET') {
     wx.request({
-      url: url,
+      url: config.app_base_url + url,
       method: method,
       data: data,
       header: {
         'content-type':'application/json',
-        'appkey':config.appkey
+        'appkey': config.appKey
       },
       success(res) {
         const code = res.statusCode.toString()
@@ -46,7 +46,7 @@ class HTTP {
     }
     const tip = tips[error_code]
     wx.showToast({
-      title: tip?tip:tips[1],
+      title: tip ? tip : tips[1],
       icon:'none',
       duration:2000
     })
