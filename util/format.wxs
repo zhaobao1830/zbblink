@@ -1,7 +1,0 @@
-var format = function () {
-  return '122344'
-}
-
-module.exports = {
-  format: format
-}
