@@ -23,7 +23,6 @@ Page({
         this.setData({
           books: res
         })
-        console.log(res)
       })
   },
 

@@ -3,7 +3,12 @@ import {
   BookModel
 } from "../../models/book"
 
+import {
+  LikeModel
+} from "../../models/like";
+
 const bookModel = new BookModel()
+const likeModel = new LikeModel()
 
 Page({
 
@@ -23,6 +28,7 @@ Page({
    * 参数可以通过options获取
    */
   onLoad: function (options) {
+    wx.showLoading()
     const bid = options.bid
     const detail = bookModel.getDetail(bid)
     const comments = bookModel.getComments(bid)
@@ -36,11 +42,62 @@ Page({
           likeStatus: res[2].like_status,
           likeCount: res[2].fav_nums
         })
+        wx.hideLoading()
       })
+  },
+
+  onFakePost () {
+    this.setData({
+      posting: true
+    })
+  },
+
+  onCancel () {
+    this.setData({
+      posting: false
+    })
   },
 
   onLike (event) {
     const like_or_cancel = event.detail.behavior
+    likeModel.like(like_or_cancel, this.data.book.id, 400)
+  },
+
+  onPost (event) {
+    const comment = event.detail.text
+    
+    if (!comment) {
+      return
+    }
+
+    if (comment.length > 12) {
+      wx.showToast({
+        title: '短评最多12个字',
+        icon: 'none'
+      })
+      return 
+    }
+
+    bookModel.postComment(this.data.book.id, comment)
+      .then(res => {
+        wx.showToast({
+          title: '+ 1',
+          icon: "none"
+        })
+
+        this.data.comments.unshift({
+          content: comment,
+          nums: 1
+        })
+
+        console.log(this.data.comments)
+
+        this.setData({
+          comments: this.data.comments,
+          posting: false 
+        })
+
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
