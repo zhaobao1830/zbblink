@@ -21,7 +21,10 @@ Component({
   behaviors: [paginationBev],
 
   properties: {
-
+    more: {
+      type: String,
+      observer: 'loadMore'
+    }
   },
 
   /**
@@ -31,7 +34,9 @@ Component({
     historyWords: [],
     hotWords: [],
     q: '',
-    searching:false
+    searching:false,
+    loading: false,
+    loadingCenter: false
   },
 
   attached () {
@@ -50,12 +55,30 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    loadMore (newVal, oldVal) {
+      if (!this.data.q) {
+        return
+      }
+      if (this.isLocked()) {
+        return;
+      }
+      if (this.hasMore()) {
+        this.locked()
+        bookModel.search(this.data.dataArray.length, this.data.q)
+          .then(res => {
+            this.setMoreData(res.books)
+            this.unLocked()
+          }, () => {
+            this.unLocked()
+          })
+      }
+    },
     onCancel () {
       this.triggerEvent('cancel', {}, {})
     },
     onConfirm (event) {
       this._showResult()
-
+      this._showLoadingCenter()
       const q = event.detail.value || event.detail.text
 
       this.setData({
@@ -65,10 +88,13 @@ Component({
       bookModel.search(0, q)
         .then(res => {
           this.setMoreData(res.books)
+          this.setTotal(res.total)
           keywordModel.addToHistory(q)
+          this._hideLoadingCenter()
         })
     },
     onDelete(event) {
+      this.initialize()
       this._closeResult()
     },
     _showResult() {
@@ -80,6 +106,17 @@ Component({
       this.setData({
         searching: false,
         q: ''
+      })
+    },
+    _showLoadingCenter() {
+      console.log('tttttttttttttttttttt')
+      this.setData({
+        loadingCenter: true
+      })
+    },
+    _hideLoadingCenter() {
+      this.setData({
+        loadingCenter: false
       })
     }
   }
