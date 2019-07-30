@@ -5,9 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    authorized: false,
+    userInfo: null
   },
 
+  onGetUserInfo (event) {
+    const userInfo = event.detail.userInfo
+    if (userInfo) {
+      this.setData({
+        userInfo,
+        authorized: true
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

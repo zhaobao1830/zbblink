@@ -1,0 +1,9 @@
+<!--button原生组件,open-type需要设置为getUserInfo，getuserinfo方法用来获取用户信息-->
+<button
+  bind:getuserinfo="onGetUserInfo"
+  open-type="{{openType}}"
+  plan="{{true}}"
+  class="container"
+>
+  <slot name="img"></slot>
+</button>
