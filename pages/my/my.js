@@ -1,4 +1,10 @@
 // pages/my/my.js
+import {
+  BookModel
+} from '../../models/book.js'
+
+const bookModel = new BookModel()
+
 Page({
 
   /**
@@ -6,7 +12,8 @@ Page({
    */
   data: {
     authorized: false,
-    userInfo: null
+    userInfo: null,
+    bookCount: 0
   },
 
   onGetUserInfo (event) {
@@ -31,6 +38,15 @@ Page({
     })
   },
 
+  getMyBookCount() {
+    bookModel.getMyBookCount()
+      .then(res => {
+        this.setData({
+          bookCount: res.count
+        })
+      })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -49,7 +65,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getMyBookCount()
   },
 
   /**
