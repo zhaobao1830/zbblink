@@ -35,6 +35,14 @@ class ClassicModel extends HTTP {
     }
   }
 
+  getById(cid, type, success) {
+    let params = {
+      url: `classic/${type}/${cid}`,
+      success: success
+    }
+    this.request(params)
+  }
+
   getMyFavor(success) {
     const params = {
       url: 'classic/favor',
