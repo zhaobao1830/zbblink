@@ -1,9 +1,14 @@
 // pages/my/my.js
 import {
+  ClassicModel
+} from '../../models/classic.js'
+
+import {
   BookModel
 } from '../../models/book.js'
 
 const bookModel = new BookModel()
+const classicModel = new ClassicModel()
 
 Page({
 
@@ -13,7 +18,8 @@ Page({
   data: {
     authorized: false,
     userInfo: null,
-    bookCount: 0
+    bookCount: 0,
+    classics: null
   },
 
   onGetUserInfo (event) {
@@ -47,6 +53,23 @@ Page({
       })
   },
 
+  getMyFavor() {
+    classicModel.getMyFavor(res => {
+      this.setData({
+        classics: res
+      })
+    })
+  },
+
+  onJumpToDetail(event){
+    const cid = event.detail.cid
+    const type = event.detail.type
+    // wx.navigateTo
+    wx.navigateTo({
+      url:`/pages/classic-detail/classic-detail?cid=${cid}&type=${type}`
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -66,6 +89,7 @@ Page({
    */
   onShow: function () {
     this.getMyBookCount()
+    this.getMyFavor()
   },
 
   /**
