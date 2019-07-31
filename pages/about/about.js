@@ -1,34 +1,11 @@
-// pages/my/my.js
+// pages/about/about.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    authorized: false,
-    userInfo: null
-  },
 
-  onGetUserInfo (event) {
-    const userInfo = event.detail.userInfo
-    if (userInfo) {
-      this.setData({
-        userInfo,
-        authorized: true
-      })
-    }
-  },
-
-  onJumpToAbout(event) {
-    wx.navigateTo({
-      url: '/pages/about/about',
-    })
-  },
-
-  onStudy(event) {
-    wx.navigateTo({
-      url: '/pages/course/course',
-    })
   },
 
   /**
